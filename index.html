@@ -1,518 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZUNIQ SHOES | Future Footwear</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #09090b;
-            --bg-secondary: #121216;
-            --bg-card: #18181f;
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --accent: #00f0ff; /* Electric Blue */
-            --accent-hover: #00c8d6;
-            --accent-glow: rgba(0, 240, 255, 0.25);
-            --border: #272732;
-            --danger: #ff3b5c;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .brand-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .brand-logo span {
-            color: var(--accent);
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent);
-        }
-
-        .cart-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .cart-btn:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .cart-count {
-            background: var(--accent);
-            color: #000;
-            padding: 2px 7px;
-            border-radius: 50%;
-            font-size: 0.8rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            min-height: 85vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            padding: 4rem 5%;
-            background: radial-gradient(circle at 75% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 50%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.8rem, 5vw, 4.5rem);
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-content h1 span {
-            color: var(--accent);
-            display: block;
-        }
-
-        .hero-content p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 480px;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 1rem 2.2rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            box-shadow: 0 0 25px var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .hero-image-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-image-container img {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 12px;
-            object-fit: cover;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
-            transition: transform 0.5s ease;
-        }
-
-        .hero-image-container img:hover {
-            transform: scale(1.03) rotate(-2deg);
-        }
-
-        /* Store Section */
-        .store-section {
-            padding: 5rem 5%;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(0, 240, 255, 0.05);
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-        }
-
-        .product-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            background: #101014;
-            overflow: hidden;
-        }
-
-        .product-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-img-wrapper img {
-            transform: scale(1.08);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(9, 9, 11, 0.85);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 3px 10px;
-            font-size: 0.75rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            border-radius: 3px;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-category {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .product-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-price {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Size Selector */
-        .size-selector {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .size-btn {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            width: 36px;
-            height: 36px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .size-btn.selected, .size-btn:hover {
-            border-color: var(--accent);
-            color: var(--text-primary);
-            background: rgba(0, 240, 255, 0.15);
-        }
-
-        .add-to-cart-btn {
-            margin-top: auto;
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 0.8rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--accent);
-            color: #000;
-        }
-
-        /* Cart Drawer */
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            z-index: 200;
-            display: none;
-            justify-content: flex-end;
-        }
-
-        .cart-overlay.open {
-            display: flex;
-        }
-
-        .cart-drawer {
-            width: 100%;
-            max-width: 420px;
-            background: var(--bg-secondary);
-            border-left: 1px solid var(--border);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        .close-cart:hover {
-            color: var(--text-primary);
-        }
-
-        .cart-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 1rem;
-            background: var(--bg-card);
-            padding: 0.8rem;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            align-items: center;
-        }
-
-        .cart-item img {
-            width: 65px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .cart-item-details {
-            flex-grow: 1;
-        }
-
-        .cart-item-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .cart-item-meta {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-        }
-
-        .cart-item-price {
-            color: var(--accent);
-            font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .remove-item {
-            background: none;
-            border: none;
-            color: var(--danger);
-            cursor: pointer;
-            font-size: 0.85rem;
-            padding: 4px;
-        }
-
-        .cart-footer {
-            border-top: 1px solid var(--border);
-            padding-top: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-        }
-
-        /* Checkout Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 300;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-box {
-            background: var(--bg-card);
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-
-        .modal-box h3 {
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .form-group {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zuniq Shoes — Online Shoe Store</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #181b22;
+      --surface-2: #222630;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-dark: #0284c7;
+      --border: #2b303c;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 17, 21, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .cart-toggle {
+      background: var(--accent);
+      color: #081018;
+      border: none;
+      padding: 9px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cart-toggle:hover {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    .hero {
+      padding: 36px 20px;
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .controls {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 20px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: #081018;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .search-input {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      min-width: 220px;
+    }
+
+    .grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+
+    .card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .price {
+      font-weight: 800;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .category-tag {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .size-option {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .size-option.selected {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.18);
+      font-weight: 700;
+    }
+
+    .add-btn {
+      margin-top: auto;
+      width: 100%;
+      padding: 9px;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #081018;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    /* Cart Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      display: none;
+      justify-content: flex-end;
+      z-index: 40;
+    }
+
+    .drawer-backdrop.open {
+      display: flex;
+    }
+
+    .drawer {
+      width: 100%;
+      max-width: 380px;
+      background: var(--surface);
+      height: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-left: 1px solid var(--border);
+    }
+
+    .drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .close-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    .cart-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cart-item {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-item small {
+      color: var(--muted);
+      display: block;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .checkout-box {
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 8px;
+      background: var(--success);
+      color: #06150b;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .msg {
+      font-size: 0.9rem;
+      color: var(--success);
+      min-height: 20px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-img {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ZUNIQ <span>SHOES</span></div>
+    <button class="cart-toggle" id="openCartBtn">Cart (<span id="cartCount">0</span>)</button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Step Into Zuniq Shoes</h1>
+      <p>Clean everyday sneakers, running pairs, and street styles. Replace the image links in the code with your own real shoe photos in your GitHub repo.</p>
+      <button class="cart-toggle" onclick="document.getElementById('shoesGrid').scrollIntoView({behavior:'smooth'})">Shop Shoes</button>
+    </div>
+    <!-- Put your real hero picture in your GitHub repo, e.g. images/hero.jpg -->
+    <img class="hero-img" src="images/hero.jpg" alt="Zuniq Shoes Banner" onerror="this.src='https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80'">
+  </section>
+
+  <div class="controls">
+    <div class="filters" id="categoryFilters">
+      <button class="filter-btn active" data-cat="All">All</button>
+      <button class="filter-btn" data-cat="Running">Running</button>
+      <button class="filter-btn" data-cat="Sneakers">Sneakers</button>
+      <button class="filter-btn" data-cat="Boots">Boots</button>
+    </div>
+    <input type="text" class="search-input" id="searchInput" placeholder="Search shoe name..." />
+  </div>
+
+  <main class="grid" id="shoesGrid"></main>
+
+  <div class="drawer-backdrop" id="cartBackdrop">
+    <aside class="drawer" aria-label="Shopping Cart">
+      <div class="drawer-head">
+        <h2>Your Cart</h2>
+        <button class="close-btn" id="closeCartBtn">Close</button>
+      </div>
+      <div class="cart-list" id="cartList"></div>
+      <div class="checkout-box">
+        <div class="total-row">
+          <span>Total</span>
+          <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+        <div class="msg" id="checkoutMsg"></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    &copy; <span id="year"></span> Zuniq Shoes. All rights reserved.
+  </footer>
+
+  <script>
+    // Put your real shoe images in an "images/" folder in your GitHub repository.
+    // Example: "images/shoe-1.jpg"
+    const SHOES = [
+      {
+        id: 1,
+        name: "Zuniq Cloud Runner",
+        category: "Running",
+        price: 89.00,
+        sizes: ["7", "8", "9", "10", "11"],
+        image: "images/shoe-1.jpg",
+        fallback: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        name: "Zuniq Street Low",
+        category: "Sneakers",
+        price: 75.00,
+        sizes: ["7", "8", "9", "10", "11"],
+        image: "images/shoe-2.jpg",
+        fallback: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        name: "Zuniq Volt Sprint",
+        category: "Running",
+        price: 99.00,
+        sizes: ["8", "9", "10", "11"],
+        image: "images/shoe-3.jpg",
+        fallback: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        name: "Zuniq Ridge Boot",
+        category: "Boots",
+        price: 115.00,
+        sizes: ["8", "9", "10", "11", "12"],
+        image: "images/shoe-4.jpg",
+        fallback: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 5,
+        name: "Zuniq Court Classic",
+        category: "Sneakers",
+        price: 79.00,
+        sizes: ["7", "8", "9", "10"],
+        image: "images/shoe-5.jpg",
+        fallback: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 6,
+        name: "Zuniq Trail Grip",
+        category: "Boots",
+        price: 125.00,
+        sizes: ["8", "9", "10", "11"],
+        image: "images/shoe-6.jpg",
+        fallback: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    let activeCategory = "All";
+    let searchQuery = "";
+    const selectedSizeByShoe = {};
+    SHOES.forEach((s) => { selectedSizeByShoe[s.id] = s.sizes[0]; });
+
+    let cart = [];
+
+    const shoesGrid = document.getElementById("shoesGrid");
+    const cartBackdrop = document.getElementById("cartBackdrop");
+    const cartList = document.getElementById("cartList");
+    const cartCount = document.getElementById("cartCount");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutMsg = document.getElementById("checkoutMsg");
+
+    function renderShoes() {
+      const filtered = SHOES.filter((shoe) => {
+        const matchesCat = activeCategory === "All" || shoe.category === activeCategory;
+        const matchesSearch = shoe.name.toLowerCase().includes(searchQuery.trim().toLowerCase());
+        return matchesCat && matchesSearch;
+      });
+
+      if (!filtered.length) {
+        shoesGrid.innerHTML = `<p style="color:var(--muted)">No shoes found.</p>`;
+        return;
+      }
+
+      shoesGrid.innerHTML = filtered.map((shoe) => {
+        const chosenSize = selectedSizeByShoe[shoe.id];
+        const sizeButtons = shoe.sizes.map((sz) =>
+          `<button type="button" class="size-option ${sz === chosenSize ? "selected" : ""}" onclick="pickSize(${shoe.id}, '${sz}')">${sz}</button>`
+        ).join("");
+
+        return `
+          <article class="card">
+            <img src="${shoe.image}" alt="${shoe.name}" onerror="this.src='${shoe.fallback}'">
+            <div class="card-body">
+              <span class="category-tag">${shoe.category}</span>
+              <div class="card-top">
+                <h2 class="card-title">${shoe.name}</h2>
+                <span class="price">$${shoe.price.toFixed(2)}</span>
+              </div>
+              <div class="sizes">${sizeButtons}</div>
+              <button type="button" class="add-btn" onclick="addToCart(${shoe.id})">Add to Cart</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    window.pickSize = function(shoeId, size) {
+      selectedSizeByShoe[shoeId] = size;
+      renderShoes();
+    };
+
+    window.addToCart = function(shoeId) {
+      const shoe = SHOES.find((s) => s.id === shoeId);
+      const size = selectedSizeByShoe[shoeId];
+      if (!shoe) return;
+
+      const existing = cart.find((item) => item.id === shoe.id && item.size === size);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: shoe.id, name: shoe.name, price: shoe.price, size, qty: 1 });
+      }
+      checkoutMsg.textContent = "";
+      renderCart();
+    };
+
+    window.changeQty = function(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    };
+
+    function renderCart() {
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+      cartCount.textContent = totalItems;
+      cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+
+      if (!cart.length) {
+        cartList.innerHTML = `<p style="color:var(--muted)">Your cart is empty.</p>`;
+        return;
+      }
+
+      cartList.innerHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <div>
+            <strong>${item.name}</strong>
+            <small>Size ${item.size} — $${item.price.toFixed(2)} each</small>
+          </div>
+          <div class="qty-controls">
+            <button type="button" class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button type="button" class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("categoryFilters").addEventListener("click", (e) => {
+      if (!e.target.matches(".filter-btn")) return;
+      document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+      e.target.classList.add("active");
+      activeCategory = e.target.dataset.cat;
+      renderShoes();
+    });
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderShoes();
+    });
+
+    document.getElementById("openCartBtn").addEventListener("click", () => {
+      cartBackdrop.classList.add("open");
+    });
+
+    document.getElementById("closeCartBtn").addEventListener("click", () => {
+      cartBackdrop.classList.remove("open");
+    });
+
+    cartBackdrop.addEventListener("click", (e) => {
+      if (e.target === cartBackdrop) cartBackdrop.classList.remove("open");
+    });
+
+    document.getElementById("checkoutBtn").addEventListener("click", () => {
+      if (!cart.length) {
+        checkoutMsg.textContent = "Add a shoe first.";
+        return;
+      }
+      cart = [];
+      renderCart();
+      checkoutMsg.textContent = "Order placed! (Demo checkout)";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderShoes();
+    renderCart();
+  </script>
+</body>
+</html>
